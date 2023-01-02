@@ -5,7 +5,7 @@
 
 #include <linux/kallsyms.h>
 
-// MODULE_LISENSE("GPL");
+// MODULE_LICENSE("GPL");
 MODULE_AUTHOR("midoks");
 MODULE_DESCRIPTION("hello");
 MODULE_VERSION("v1.0");
