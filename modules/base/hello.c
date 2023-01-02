@@ -12,13 +12,13 @@ MODULE_VERSION("v1.0");
 
 int __init hello_module_init(void)
 {
-    printk(KERN_INFO "Hello Kernel.\n");
+    printk(KERN_INFO "Hello Kernel -- midoks .\n");
     return 0;//A non 0 return means init_module failed; module can't be loaded.
 }
  
 void __exit hello_module_exit(void)
 {
-    printk(KERN_INFO "Bye world.\n");
+    printk(KERN_INFO "Bye Kernel -- midoks .\n");
 }
  
 module_init(hello_module_init);
