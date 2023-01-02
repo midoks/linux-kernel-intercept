@@ -21,7 +21,9 @@ elif grep -Eqi "Amazon Linux" /etc/issue || grep -Eq "Amazon Linux" /etc/*-relea
 elif grep -Eqi "Debian" /etc/issue || grep -Eq "Debian" /etc/*-release; then
 	OSNAME='debian'
 	apt update -y
-	apt install kernel-devel-$(uname -r)
+	apt-get install -y build-essential 
+	apt-get install -y linux-headers-$(uname -r)
+
 elif grep -Eqi "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
 	OSNAME='ubuntu'
 else
