@@ -32,11 +32,19 @@ fi
 
 echo "use system version: ${OSNAME}"
 
-cd /opt/linux-kernel-intercept/modules/base && make
+# cd /opt/linux-kernel-intercept/modules/base && make
+
+# if [ "$?" == "0" ];then
+# 	cd /opt/linux-kernel-intercept/modules/base && rmmod hello
+# 	cd /opt/linux-kernel-intercept/modules/base && insmod hello.ko
+# 	dmesg | tail -5 
+# fi
+
+cd /opt/linux-kernel-intercept/modules/base_sys_call && make
 
 if [ "$?" == "0" ];then
-	cd /opt/linux-kernel-intercept/modules/base && rmmod hello
-	cd /opt/linux-kernel-intercept/modules/base && insmod hello.ko
+	cd /opt/linux-kernel-intercept/modules/base_sys_call && rmmod hello
+	cd /opt/linux-kernel-intercept/modules/base_sys_call && insmod hello.ko
 	dmesg | tail -5 
 fi
 
