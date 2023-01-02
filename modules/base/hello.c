@@ -12,7 +12,7 @@ MODULE_VERSION("v1.0");
 
 int __init hello_module_init(void)
 {
-    printk(KERN_INFO "Hello world.\n");
+    printk(KERN_INFO "Hello Kernel.\n");
     return 0;//A non 0 return means init_module failed; module can't be loaded.
 }
  
