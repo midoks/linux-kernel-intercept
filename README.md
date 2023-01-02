@@ -8,6 +8,8 @@ linux内核拦截事例
 
 
 ### 一键安装测试
-curl -fsSL  https://raw.githubusercontent.com/midoks/linux-kernel-intercept/main/scripts/install.sh | bash
 
+```
+curl -fsSL  https://raw.githubusercontent.com/midoks/linux-kernel-intercept/main/scripts/install.sh | bash
+```
 
