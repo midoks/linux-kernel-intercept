@@ -1,11 +1,12 @@
 #include <linux/module.h>   /* Needed by all modules */
 #include <linux/kernel.h>   /* Needed for KERN_INFO */
 #include <linux/init.h>
+#include <asm/unistd.h>
 
 
 #include <linux/kallsyms.h>
 #include <linux/uaccess.h>
-
+#include <linux/string.h>
 
 static char readbuf[100];
 static char writebuf[100];
@@ -57,7 +58,7 @@ asmlinkage int custom_open (const char* __user file_name, int flags, int mode)
     return original_open( file_name , flags, mode);
 }
 
- 
+
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("midoks");
 MODULE_DESCRIPTION("hello");
