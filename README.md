@@ -22,6 +22,35 @@ curl -fsSL  https://raw.githubusercontent.com/midoks/linux-kernel-intercept/main
 sudo cat /boot/System.map-`uname -r` | grep sys_call_table
 ```
 
+- demsg调试命令
+
+```
+sudo dmesg 						#列出所有 dmesg 消息
+sudo dmesg | less 				#更少的消息分页
+sudo dmesg -L 					#着色 dmesg 消息
+sudo dmesg -H 					#dmesg 人性化格式
+sudo dmesg -T					#dmesg 人类可读格式
+sudo dmesg --follow				#dmesg 实时监控
+sudo dmesg | head -10			#前 10 条 dmesg 消息
+sudo dmesg | tail -10			#最近 10 条 dmesg 消息
+sudo dmesg | grep -i "admin" 	#过滤特定字符串
+sudo dmesg -l warn 				#过滤特定的消息级别
+sudo dmesg -l warn,err 			#过滤多个消息级别
+
+dmesg 消息级别
+内核或 dmesg 消息设置有不同的级别来指定消息的重要性。
+emerg： 系统无法使用。
+alert： 必须立即采取行动。
+crit： 临界条件。
+err： 错误条件。
+warn： 警告条件。
+notice： 正常但重要的情况。
+info： 信息。
+debug： 调试级消息。
+
+```
+
+
 ### 参考
 - https://zhuanlan.zhihu.com/p/549973896
 - https://copyfuture.com/blogs-details/202211090546213912
