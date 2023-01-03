@@ -56,4 +56,5 @@ debug： 调试级消息。
 - https://copyfuture.com/blogs-details/202211090546213912
 - https://blog.51cto.com/u_15775105/5822083
 - http://www.deansys.com/doc/ldd3/ch02s03.html
+- https://github.com/torvalds/linux/search?q=__NR_open
 
