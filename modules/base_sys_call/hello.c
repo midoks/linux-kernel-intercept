@@ -64,9 +64,9 @@ asmlinkage int custom_open (const char* __user file_name, int flags, int mode)
     struct path pwd;
     //获取当前目录
     get_fs_pwd(current->fs,&pwd);
-    printk(KERN_WARNING "helloa PID=%d,parent=%d attempts to open!\n",pid,ppid);
-    printk(KERN_WARNING "helloa ROOT:%s!\n",ppwd);
-    printk(KERN_WARNING "helloa PWD:%s!\n",pwd.dentry->d_name.name);
+    printk(KERN_WARNING "hello op PID=%d,parent=%d attempts to open!\n",pid,ppid);
+    printk(KERN_WARNING "hello op ROOT:%s!\n",ppwd);
+    printk(KERN_WARNING "hello op PWD:%s!\n",pwd.dentry->d_name.name);
     return original_open( file_name , flags, mode);
 }
 
