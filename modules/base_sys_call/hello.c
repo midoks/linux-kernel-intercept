@@ -7,11 +7,7 @@
 #include <linux/kallsyms.h>
 #include <linux/uaccess.h>
 #include <linux/string.h>
-#include <linux/fs.h>
-#include <linux/fcntl.h>
-#include <linux/file.h>
 #include <linux/proc_fs.h>
-#include <linux/string.h>
 #include <linux/vmalloc.h>
 #include <asm/uaccess.h>
 #include <asm/current.h>
