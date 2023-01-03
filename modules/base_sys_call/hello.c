@@ -4,7 +4,7 @@
 
 
 #include <linux/kallsyms.h>
-
+#include <linux/uaccess.h>
 
 
 static char readbuf[100];
