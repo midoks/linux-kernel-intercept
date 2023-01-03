@@ -7,6 +7,9 @@
 #include <linux/kallsyms.h>
 #include <linux/uaccess.h>
 #include <linux/string.h>
+#include <linux/fs.h>
+#include <linux/fcntl.h>
+#include <linux/file.h>
 
 static char readbuf[100];
 static char writebuf[100];
