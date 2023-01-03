@@ -1,7 +1,7 @@
 #include <linux/module.h>   /* Needed by all modules */
 #include <linux/kernel.h>   /* Needed for KERN_INFO */
 #include <linux/init.h>
-#include <asm/unistd.h>
+#include <asm/unistd.h>    /* __NR_open */
 
 
 #include <linux/kallsyms.h>
