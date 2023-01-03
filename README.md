@@ -22,3 +22,8 @@ curl -fsSL  https://raw.githubusercontent.com/midoks/linux-kernel-intercept/main
 sudo cat /boot/System.map-`uname -r` | grep sys_call_table
 ```
 
+### 参考
+- https://zhuanlan.zhihu.com/p/549973896
+- https://copyfuture.com/blogs-details/202211090546213912
+- https://blog.51cto.com/u_15775105/5822083
+
