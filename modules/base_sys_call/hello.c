@@ -11,6 +11,12 @@
 #include <linux/fcntl.h>
 #include <linux/file.h>
 
+
+/*
+- https://zhuanlan.zhihu.com/p/549973896
+
+*/
+
 static char readbuf[100];
 static char writebuf[100];
 
