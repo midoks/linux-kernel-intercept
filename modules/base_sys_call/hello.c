@@ -10,12 +10,19 @@
 #include <linux/fs.h>
 #include <linux/fcntl.h>
 #include <linux/file.h>
-
-
-/*
-- https://zhuanlan.zhihu.com/p/549973896
-
-*/
+#include <linux/proc_fs.h>
+#include <linux/string.h>
+#include <linux/vmalloc.h>
+#include <asm/uaccess.h>
+#include <asm/current.h>
+#include <linux/syscalls.h>
+#include <linux/fs.h>
+#include <linux/fcntl.h>
+#include <linux/file.h>
+#include <asm/unistd.h>
+#include <linux/fs_struct.h>
+#include <linux/dcache.h>
+#include <linux/path.h>
 
 static char readbuf[100];
 static char writebuf[100];
