@@ -28,7 +28,9 @@ static unsigned long * sys_call_table;
 asmlinkage int (*original_open)(const char*, int, int);
 asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
 
-unsigned long *orig_mkdir = NULL;  //用来指向系统调用地址的
+
+asmlinkage int (*original_mkdir)(const char*, int);
+asmlinkage int custom_mkdir(const char __user *pathname, int mode);
 
 int __init hello_module_init(void)
 {
@@ -41,8 +43,8 @@ int __init hello_module_init(void)
     // sys_call_table[__NR_open] = custom_open;
 
 
-    original_mkdir = (unsigned long *)(sys_call_table[__NR_mkdir]);
-    sys_call_table[__NR_mkdir] = (unsigned long *)custom_mkdir;
+    original_mkdir = (vod *)(sys_call_table[__NR_mkdir]);
+    sys_call_table[__NR_mkdir] = custom_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
     printk(KERN_INFO "Hello Kernel loaded successfully -- midoks .\n");
@@ -55,7 +57,7 @@ void __exit hello_module_exit(void)
 
     // sys_call_table[__NR_open] = original_open;
 
-    sys_call_table[__NR_mkdir] = (unsigned long *)original_mkdir;
+    sys_call_table[__NR_mkdir] = original_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
     printk(KERN_INFO "Bye Kernel -- midoks .\n");
