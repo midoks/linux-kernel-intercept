@@ -25,8 +25,8 @@
 
 static unsigned long * sys_call_table;
 
-asmlinkage int (*original_open)(const char*, int, int);
-asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
+// asmlinkage int (*original_open)(const char*, int, int);
+// asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
 
 
 asmlinkage int (*original_mkdir)(const char*, int);
