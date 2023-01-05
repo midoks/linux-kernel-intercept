@@ -67,7 +67,7 @@ asmlinkage int custom_mkdir(const char __user *pathname, int mode)
 {
     printk("mkdir pathname: %s\n", pathname);
     printk(KERN_ALERT "mkdir do nothing!\n");
-    return original_mkdir(file_name, mode);
+    return original_mkdir(pathname, mode);
     // return 0; /*everything is ok, but he new systemcall does nothing*/
 }
 
