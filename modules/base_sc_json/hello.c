@@ -30,7 +30,7 @@ static unsigned long * sys_call_table;
 
 
 asmlinkage int (*original_mkdir)(const char*, int);
-asmlinkage int custom_mkdir(const char __user *pathname, int mode);
+asmlinkage int custom_mkdir(const char* __user pathname, int mode);
 
 int __init hello_module_init(void)
 {
