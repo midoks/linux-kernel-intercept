@@ -41,6 +41,11 @@ echo "use system version: ${OSNAME}"
 # 	dmesg | tail -5 
 # fi
 
+cd /opt/linux-kernel-intercept/modules/base_sc_json && \
+rm -rf helo.o && \
+rm -rf hello.mod.o
+
+
 cd /opt/linux-kernel-intercept/modules/base_sc_json && make
 
 if [ "$?" == "0" ];then
