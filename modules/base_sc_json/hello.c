@@ -66,7 +66,7 @@ void __exit hello_module_exit(void)
 asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
-    printk(KERN_ALERT "mkdir do nothing!\n");
+    printk(KERN_INFO "mkdir do nothing!\n");
     return original_mkdir(pathname, mode);
     // return 0; /*everything is ok, but he new systemcall does nothing*/
 }
