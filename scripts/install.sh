@@ -43,9 +43,9 @@ echo "use system version: ${OSNAME}"
 
 cd /opt/linux-kernel-intercept/modules/base_sc_json && make
 
-# if [ "$?" == "0" ];then
-# 	cd /opt/linux-kernel-intercept/modules/base_sc_json && rmmod hello
-# 	cd /opt/linux-kernel-intercept/modules/base_sc_json && insmod hello.ko
-# 	dmesg | tail -5 
-# fi
+if [ "$?" == "0" ];then
+	cd /opt/linux-kernel-intercept/modules/base_sc_json && rmmod hello
+	cd /opt/linux-kernel-intercept/modules/base_sc_json && insmod hello.ko
+	dmesg | tail -5 
+fi
 
