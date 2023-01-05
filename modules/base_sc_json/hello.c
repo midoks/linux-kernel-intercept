@@ -43,7 +43,7 @@ int __init hello_module_init(void)
     // sys_call_table[__NR_open] = custom_open;
 
 
-    original_mkdir = (vod *)(sys_call_table[__NR_mkdir]);
+    original_mkdir = (void *)(sys_call_table[__NR_mkdir]);
     sys_call_table[__NR_mkdir] = custom_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
