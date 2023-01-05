@@ -37,6 +37,9 @@ elif grep -Eqi "Debian" /etc/issue || grep -Eq "Debian" /etc/*-release; then
 
 elif grep -Eqi "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
 	OSNAME='ubuntu'
+	apt update -y
+	apt-get install -y build-essential 
+	apt-get install -y linux-headers-$(uname -r)
 else
 	OSNAME='unknow'
 fi
