@@ -64,7 +64,7 @@ void __exit hello_module_exit(void)
 }
  
 //mkdir的函数原型,这个函数的原型要和系统的一致
-asmlinkage long custom_mkdir(const char __user *pathname, int mode)
+asmlinkage int custom_mkdir(const char __user *pathname, int mode)
 {
         printk("mkdir pathname: %s\n", pathname);
         printk(KERN_ALERT "mkdir do nothing!\n");
