@@ -47,7 +47,7 @@ int __init hello_module_init(void)
     sys_call_table[__NR_mkdir] = custom_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
-    printk(KERN_INFO "Hello Kernel loaded successfully -- midoks .\n");
+    printk(KERN_INFO "Hello Kernel loaded successfully -- midoks.\n");
     return 0;//A non 0 return means init_module failed; module can't be loaded.
 }
  
@@ -60,7 +60,7 @@ void __exit hello_module_exit(void)
     sys_call_table[__NR_mkdir] = original_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
-    printk(KERN_INFO "Bye Kernel -- midoks .\n");
+    printk(KERN_INFO "Bye Kernel -- midoks.\n");
 }
  
 //mkdir的函数原型,这个函数的原型要和系统的一致
