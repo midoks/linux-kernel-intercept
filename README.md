@@ -56,6 +56,20 @@ lsmod
 lsmod | grep hello
 ```
 
+### 系统函数头文件
+```
+include/linux/syscalls.h
+
+例子,具体源码中去查找
+
+asmlinkage long sys_getcwd(char __user *buf, unsigned long size);
+asmlinkage long sys_mkdir(const char __user *pathname, umode_t mode);
+asmlinkage long sys_chdir(const char __user *filename);
+asmlinkage long sys_fchdir(unsigned int fd);
+asmlinkage long sys_rmdir(const char __user *pathname);
+asmlinkage long sys_lookup_dcookie(u64 cookie64, char __user *buf, size_t len);
+```
+
 
 ### 参考
 - https://zhuanlan.zhihu.com/p/549973896
