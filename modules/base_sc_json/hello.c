@@ -29,8 +29,8 @@ static unsigned long * sys_call_table;
 // asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
 
 
-asmlinkage int (*original_mkdir)(const char*, int);
-asmlinkage int custom_mkdir(const char* __user pathname, int mode);
+asmlinkage long (*original_mkdir)(const char*, int);
+asmlinkage long custom_mkdir(const char* __user *pathname, umode_t mode);
 
 int __init hello_module_init(void)
 {
@@ -63,7 +63,7 @@ void __exit hello_module_exit(void)
 }
  
 //mkdir的函数原型,这个函数的原型要和系统的一致
-asmlinkage int custom_mkdir(const char __user *pathname, int mode)
+asmlinkage long custom_mkdir(const char* __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
     printk(KERN_ALERT "mkdir do nothing!\n");
