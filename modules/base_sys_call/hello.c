@@ -20,7 +20,7 @@
 #include <linux/dcache.h>
 #include <linux/path.h>
 
-static char readbuf[100];
+// static char readbuf[100];
 static char writebuf[100];
 
 static unsigned long * sys_call_table;
