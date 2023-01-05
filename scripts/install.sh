@@ -10,6 +10,7 @@ CP_CMD=/usr/bin/cp
 if [ -f /bin/cp ];then
 		CP_CMD=/bin/cp
 fi
+mkdir -p /opt/linux-kernel-intercept
 $CP_CMD -rf /tmp/linux-kernel-intercept-main/* /opt/linux-kernel-intercept
 
 
