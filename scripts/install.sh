@@ -2,11 +2,20 @@
 
 mkdir -p /opt
 
-if [ ! -d /opt/linux-kernel-intercept ];then
-	cd /opt && git clone https://github.com/midoks/linux-kernel-intercept
-else
-	cd /opt/linux-kernel-intercept && git pull
+
+curl -sSLo /tmp/main.zip https://codeload.github.com/midoks/linux-kernel-intercept/zip/main
+cd /tmp && unzip /tmp/main.zip
+
+CP_CMD=/usr/bin/cp
+if [ -f /bin/cp ];then
+		CP_CMD=/bin/cp
 fi
+$CP_CMD -rf /tmp/linux-kernel-intercept-main/* /opt/linux-kernel-intercept
+
+
+rm -rf /tmp/main.zip
+rm -rf /tmp/linux-kernel-intercept-main
+
 
 if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
 	OSNAME='rhel'
