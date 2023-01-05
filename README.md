@@ -50,6 +50,12 @@ debug： 调试级消息。
 
 ```
 
+### 查看加载模块
+```
+lsmod
+lsmod | grep hello
+```
+
 
 ### 参考
 - https://zhuanlan.zhihu.com/p/549973896
