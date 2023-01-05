@@ -28,13 +28,21 @@ static unsigned long * sys_call_table;
 asmlinkage int (*original_open)(const char*, int, int);
 asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
 
+unsigned long *orig_mkdir = NULL;  //用来指向系统调用地址的
+
 int __init hello_module_init(void)
 {
     sys_call_table = NULL;
     sys_call_table = (unsigned long *)kallsyms_lookup_name("sys_call_table");
     write_cr0 (read_cr0 () & (~ 0x10000));
-    original_open = (void *)sys_call_table[__NR_open];
-    sys_call_table[__NR_open] = custom_open;
+
+    //文件打开hook
+    // original_open = (void *)sys_call_table[__NR_open];
+    // sys_call_table[__NR_open] = custom_open;
+
+
+    original_mkdir = (unsigned long *)(sys_call_table[__NR_mkdir]);
+    sys_call_table[__NR_mkdir] = (unsigned long *)custom_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
     printk(KERN_INFO "Hello Kernel loaded successfully -- midoks .\n");
@@ -44,12 +52,22 @@ int __init hello_module_init(void)
 void __exit hello_module_exit(void)
 {
     write_cr0 (read_cr0 () & (~ 0x10000));
-    sys_call_table[__NR_open] = original_open;
+
+    // sys_call_table[__NR_open] = original_open;
+
+    sys_call_table[__NR_mkdir] = (unsigned long *)original_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
     printk(KERN_INFO "Bye Kernel -- midoks .\n");
 }
  
+//mkdir的函数原型,这个函数的原型要和系统的一致
+asmlinkage long custom_mkdir(const char __user *pathname, int mode)
+{
+        printk("mkdir pathname: %s\n", pathname);
+        printk(KERN_ALERT "mkdir do nothing!\n");
+        return 0; /*everything is ok, but he new systemcall does nothing*/
+}
 
 /** 
  * @desc 自定义拦截文件打开时间
