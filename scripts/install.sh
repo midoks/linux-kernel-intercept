@@ -54,11 +54,11 @@ echo "use system version: ${OSNAME}"
 # 	dmesg | tail -5 
 # fi
 
-cd /opt/linux-kernel-intercept/modules/base_sc_json && make clean && make
+cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && make clean && make
 
 # if [ "$?" == "0" ];then
-# 	cd /opt/linux-kernel-intercept/modules/base_sc_json && rmmod hello
-# 	cd /opt/linux-kernel-intercept/modules/base_sc_json && insmod hello.ko
+# 	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && rmmod hello
+# 	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && insmod hello.ko
 # 	dmesg | tail -5 
 # fi
 
