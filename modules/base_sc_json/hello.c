@@ -102,7 +102,7 @@ asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("midoks");
-MODULE_DESCRIPTION("hello");
+MODULE_DESCRIPTION("hello demo");
 MODULE_VERSION("v1.0");
 
 module_init(hello_module_init);
