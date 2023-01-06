@@ -54,7 +54,7 @@ int __init hello_module_init(void)
     printk(KERN_ALERT "orig_mkdir: 0x%p\n", original_mkdir);
 
     make_rw((unsigned long)sys_call_table); //修改页属性
-    sys_call_table[__NR_mkdir] = (unsigned long )custom_mkdir;
+    sys_call_table[__NR_mkdir] = (unsigned long *)custom_mkdir;
     make_ro((unsigned long)sys_call_table);
 
     printk(KERN_INFO "Hello Kernel loaded successfully -- midoks.\n");
@@ -64,7 +64,7 @@ int __init hello_module_init(void)
 void __exit hello_module_exit(void)
 {
     make_rw((unsigned long)sys_call_table);
-    sys_call_table[__NR_mkdir] = (unsigned long )original_mkdir;
+    sys_call_table[__NR_mkdir] = (unsigned long *)original_mkdir;
     /*set mkdir syscall to the origal one*/
     make_ro((unsigned long)sys_call_table);
 
