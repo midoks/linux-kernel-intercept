@@ -44,7 +44,7 @@ int __init hello_module_init(void)
 
 
     original_mkdir = (void *)sys_call_table[__NR_mkdir];
-    sys_call_table[__NR_mkdir] = custom_mkdir;
+    sys_call_table[__NR_mkdir] = (unsigned long *)custom_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
     printk(KERN_INFO "Hello Kernel loaded successfully -- midoks.\n");
