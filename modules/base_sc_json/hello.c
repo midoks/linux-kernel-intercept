@@ -56,7 +56,7 @@ void __exit hello_module_exit(void)
     write_cr0 (read_cr0 () & (~ 0x10000));
     // sys_call_table[__NR_open] = original_open;
 
-    sys_call_table[__NR_mkdir] = original_mkdir;
+    sys_call_table[__NR_mkdir] = (unsigned long *)original_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
     printk(KERN_INFO "Bye Kernel -- midoks.\n");
