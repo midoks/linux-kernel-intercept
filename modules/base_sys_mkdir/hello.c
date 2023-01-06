@@ -33,7 +33,6 @@ int make_rw(unsigned long address)
     pte_t *pte = lookup_address(address, &level);//查找虚拟地址所在的页表地址
     //设置页表读写属性
     pte->pte |=  _PAGE_RW;
-
     return 0;
 }
 /* make the page write protected */
@@ -42,7 +41,6 @@ int make_ro(unsigned long address)
     unsigned int level;
     pte_t *pte = lookup_address(address, &level);
     pte->pte &= ~_PAGE_RW; //设置只读属性
-
     return 0;
 }
 
