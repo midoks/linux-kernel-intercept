@@ -23,10 +23,6 @@
 
 static unsigned long * sys_call_table;
 
-// asmlinkage int (*original_open)(const char*, int, int);
-// asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
-
-
 asmlinkage long (*original_mkdir)(const char*, int);
 asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode);
 
@@ -56,7 +52,7 @@ int __init hello_module_init(void)
     sys_call_table = (unsigned long *)kallsyms_lookup_name("sys_call_table");
 
     printk(KERN_ALERT "sys_call_table: 0x%p\n", sys_call_table);
-    original_mkdir = (unsigned long)(sys_call_table[__NR_mkdir]); //获取原来的系统调用地址
+    original_mkdir = (unsigned long*)sys_call_table[__NR_mkdir]; //获取原来的系统调用地址
     printk(KERN_ALERT "orig_mkdir: 0x%p\n", original_mkdir);
 
     make_rw((unsigned long)sys_call_table); //修改页属性
