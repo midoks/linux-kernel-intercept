@@ -24,7 +24,7 @@
 static unsigned long * sys_call_table;
 
 // asmlinkage long (*original_mkdir)(const char*, int);
-asmlinkage long *orig_mkdir = NULL;
+asmlinkage long *original_mkdir = NULL;
 asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode);
 
 /* make the page writable */
