@@ -87,3 +87,4 @@ asmlinkage long sys_lookup_dcookie(u64 cookie64, char __user *buf, size_t len);
 - https://github.com/torvalds/linux/search?q=__NR_open
 - https://github.com/DaveGamble/cJSON
 - https://syscalls64.paolostivanin.com/
+- https://zhuanlan.zhihu.com/p/518244444
