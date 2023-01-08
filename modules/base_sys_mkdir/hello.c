@@ -21,7 +21,7 @@
 #include <linux/path.h>
 
 
-static unsigned long * sys_call_table;
+static unsigned long **sys_call_table;
 
 // asmlinkage long (*original_mkdir)(const char*, int);
 asmlinkage long *original_mkdir = NULL;
@@ -52,7 +52,7 @@ int __init hello_module_init(void)
 
     printk(KERN_ALERT "sys_call_table: 0x%p\n", sys_call_table);
     original_mkdir = (unsigned long*)sys_call_table[__NR_mkdir]; //获取原来的系统调用地址
-    printk(KERN_ALERT "orig_mkdir: 0x%p\n", original_mkdir);
+    printk(KERN_ALERT "original_mkdir: 0x%p\n", original_mkdir);
 
     make_rw((unsigned long)sys_call_table); //修改页属性
     sys_call_table[__NR_mkdir] = (unsigned long *)custom_mkdir;
