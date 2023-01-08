@@ -51,6 +51,9 @@ debug： 调试级消息。
 ```
 
 ### 查看加载模块
+
+- ls /lib/modules/`uname -r`/extra
+
 ```
 lsmod
 lsmod | grep hello

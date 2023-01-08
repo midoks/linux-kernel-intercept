@@ -21,6 +21,13 @@ rm -rf /tmp/linux-kernel-intercept-main
 if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
 	OSNAME='rhel'
 	yum install -y kernel-devel-$(uname -r)
+
+	yum install -y rpm-build redhat-rpm-config asciidoc hmaccalc perl-ExtUtils-Embed pesign xmlto
+	yum install -y audit-libs-devel binutils-devel elfutils-devel elfutils-libelf-devel java-devel
+	yum install -y ncurses-devel newt-devel numactl-devel pciutils-devel python-devel zlib-devel
+
+	yum install -y ncurses-devel
+	yum install -y elfutils-libelf-devel
 elif grep -Eqi "Fedora" /etc/issue || grep -Eq "Fedora" /etc/*-release; then
 	OSNAME='fedora'
 elif grep -Eqi "Rocky" /etc/issue || grep -Eq "Rocky" /etc/*-release; then
