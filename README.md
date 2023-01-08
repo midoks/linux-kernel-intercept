@@ -48,6 +48,11 @@ notice： 正常但重要的情况。
 info： 信息。
 debug： 调试级消息。
 
+cat /var/log/dmesg.old 
+
+#内核崩溃日志
+/var/crash
+
 ```
 
 ### 查看加载模块
