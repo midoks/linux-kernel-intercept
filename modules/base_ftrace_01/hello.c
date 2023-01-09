@@ -35,7 +35,7 @@ asmlinkage int hook_kill(const struct pt_regs *regs)
 
 }
 
-static asmlinkage long (*original_mkdir)(const char*, umode_t);
+static asmlinkage long (*original_mkdir)(const char*, int);
 static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
@@ -52,7 +52,7 @@ static asmlinkage int hook_kill(pid_t pid, int sig)
     return original_kill(pid, sig);
 }
 
-static asmlinkage long (*original_mkdir)(const char*, umode_t);
+static asmlinkage long (*original_mkdir)(const char*, int);
 static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
