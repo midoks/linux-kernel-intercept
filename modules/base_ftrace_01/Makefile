@@ -1,7 +1,7 @@
 obj-m += hello.o
 hello-y := 
 EXTRA_CFLAGS= -O0
-CONFIG_MODULE_SIG=n
+#CONFIG_MODULE_SIG=n
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 	
