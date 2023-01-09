@@ -43,6 +43,13 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
     return 0; /*everything is ok, but he new systemcall does nothing*/
 }
 
+static asmlinkage long (*original_close)(unsigned int fd);
+static asmlinkage long custom_close(unsigned int fd)
+{
+    printk("custom close: %d\n", fd);
+    return original_close(fd); /*everything is ok, but he new systemcall does nothing*/
+}
+
 #else
 
 static asmlinkage long (*original_kill)(pid_t pid, int sig);
