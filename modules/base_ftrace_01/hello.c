@@ -45,7 +45,7 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 
 #else
 
-static asmlinkage long (*origin_kill)(pid_t pid, int sig);
+static asmlinkage long (*original_kill)(pid_t pid, int sig);
 static asmlinkage int hook_kill(pid_t pid, int sig)
 {
     printk(KERN_INFO "sig is %d...\npid is %llu",sig,pid);
@@ -57,7 +57,7 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
     printk(KERN_INFO "mkdir do nothing!\n");
-    return 0; /*everything is ok, but he new systemcall does nothing*/
+    return original_mkdir(pathname,mode); /*everything is ok, but he new systemcall does nothing*/
 }
 
 #endif
@@ -65,7 +65,7 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 
 
 static struct ftrace_hook hooks[] = {
-    HOOK("sys_kill", hook_kill, &origin_kill),
+    HOOK("sys_kill", hook_kill, &original_kill),
     HOOK("sys_mkdir", custom_mkdir, &original_mkdir),
 };
 
