@@ -38,7 +38,7 @@ asmlinkage long hooked_mkdir(const char __user *pathname, umode_t mode) {
         copy_from_user(user_filename,real_filename,500);
         printk("[+] hooked sys_mkdir(), mkdir name:");
         printk(user_filename);
-    }else{
+    } else {
         printk("[+] read tmp_filename error!");
     }
     return old_mkdir(pathname, mode);
