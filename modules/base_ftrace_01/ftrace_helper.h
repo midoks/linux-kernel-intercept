@@ -33,9 +33,9 @@ static struct kprobe kp = {
 */
 
 #define USE_FENTRY_OFFSET 1
-#if !USE_FENTRY_OFFSET
-#pragma GCC optimize("-fno-optimize-sibling-calls")
-#endif
+// #if !USE_FENTRY_OFFSET
+// #pragma GCC optimize("-fno-optimize-sibling-calls")
+// #endif
 
 
 
