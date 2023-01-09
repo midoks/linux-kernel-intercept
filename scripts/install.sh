@@ -43,7 +43,7 @@ elif grep -Eqi "Debian" /etc/issue || grep -Eq "Debian" /etc/*-release; then
 	OSNAME='debian'
 	apt update -y
 	apt install -y unzip
-	
+
 	apt-get install -y build-essential 
 	apt-get install -y linux-headers-$(uname -r)
 
@@ -68,7 +68,7 @@ echo "use system version: ${OSNAME}"
 # 	dmesg | tail -5 
 # fi
 
-cd /opt/linux-kernel-intercept/modules/base_ftrace_01 && make clean && make
+cd /opt/linux-kernel-intercept/modules/base_sys_mkdir02 && make clean && make
 
 # if [ "$?" == "0" ];then
 # 	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && rmmod hello
