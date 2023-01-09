@@ -78,6 +78,10 @@ asmlinkage long sys_rmdir(const char __user *pathname);
 asmlinkage long sys_lookup_dcookie(u64 cookie64, char __user *buf, size_t len);
 ```
 
+##
+```
+yum -y install lrzsz
+```
 
 ### 参考
 - https://zhuanlan.zhihu.com/p/549973896
