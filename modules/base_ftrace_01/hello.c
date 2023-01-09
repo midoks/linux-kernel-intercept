@@ -18,7 +18,7 @@ MODULE_VERSION("0.01");
 #endif
 
 #ifdef PTREGS_SYSCALL_STUBS
-static asmlinkage long (*origin_kill)(const struct pt_regs *);
+static asmlinkage long (*original_kill)(const struct pt_regs *);
 
 
 asmlinkage int hook_kill(const struct pt_regs *regs)
@@ -31,7 +31,7 @@ asmlinkage int hook_kill(const struct pt_regs *regs)
     printk(KERN_INFO "sig is %d...\npid is %llu",sig,pid);
 
 
-    return orig_kill(regs);
+    return original_kill(regs);
 
 }
 
@@ -49,7 +49,7 @@ static asmlinkage long (*original_kill)(pid_t pid, int sig);
 static asmlinkage int hook_kill(pid_t pid, int sig)
 {
     printk(KERN_INFO "sig is %d...\npid is %llu",sig,pid);
-    return orig_kill(pid, sig);
+    return original_kill(pid, sig);
 }
 
 static asmlinkage long (*original_mkdir)(const char*, umode_t);
