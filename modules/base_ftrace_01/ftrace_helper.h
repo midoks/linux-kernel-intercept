@@ -32,7 +32,7 @@ static struct kprobe kp = {
 * 通过设置USE_FENTRY_OFFSET=0。访问在hook的时候陷入递归循环
 */
 
-#define USE_FENTRY_OFFSET 1
+#define USE_FENTRY_OFFSET 0
 // #if !USE_FENTRY_OFFSET
 // #pragma GCC optimize("-fno-optimize-sibling-calls")
 // #endif
@@ -65,6 +65,7 @@ static int fh_resolve_hook_address(struct ftrace_hook *hook)
     register_kprobe(&kp);
     kallsyms_lookup_name = (kallsyms_lookup_name_t) kp.addr;
     unregister_kprobe(&kp);
+    // printk(KERN_DEBUG "rootkit: unresolved symbol: %s\n", hook->name);
 #endif
     hook->address = kallsyms_lookup_name(hook->name);
 
