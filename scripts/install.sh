@@ -20,6 +20,8 @@ rm -rf /tmp/linux-kernel-intercept-main
 
 if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
 	OSNAME='rhel'
+	yum install -y unzip
+
 	yum install -y kernel-devel-$(uname -r)
 
 	yum install -y rpm-build redhat-rpm-config asciidoc hmaccalc perl-ExtUtils-Embed pesign xmlto
@@ -28,6 +30,7 @@ if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
 
 	yum install -y ncurses-devel
 	yum install -y elfutils-libelf-devel
+	
 elif grep -Eqi "Fedora" /etc/issue || grep -Eq "Fedora" /etc/*-release; then
 	OSNAME='fedora'
 elif grep -Eqi "Rocky" /etc/issue || grep -Eq "Rocky" /etc/*-release; then
@@ -39,12 +42,16 @@ elif grep -Eqi "Amazon Linux" /etc/issue || grep -Eq "Amazon Linux" /etc/*-relea
 elif grep -Eqi "Debian" /etc/issue || grep -Eq "Debian" /etc/*-release; then
 	OSNAME='debian'
 	apt update -y
+	apt install -y unzip
+	
 	apt-get install -y build-essential 
 	apt-get install -y linux-headers-$(uname -r)
 
 elif grep -Eqi "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
 	OSNAME='ubuntu'
 	apt update -y
+	apt install -y unzip
+
 	apt-get install -y build-essential 
 	apt-get install -y linux-headers-$(uname -r)
 else
