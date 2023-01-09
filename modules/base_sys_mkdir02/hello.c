@@ -30,10 +30,18 @@ old_mkdir_t old_mkdir = NULL;
 
 // hooked mkdir function
 asmlinkage long hooked_mkdir(const char __user *pathname, umode_t mode) {
-
-        printk("hooked sys_mkdir(), mkdir name: ");
-        printk(pathname);
-        old_mkdir(pathname, mode);
+    struct filename* tmp_filename = NULL;
+    unsigned long * pathname_real =  (void *)(  (unsigned long)pathname + 0x70  );
+    char * real_filename = (char *)(*pathname_real);
+    if(real_filename){
+        char user_filename[500] = {0};
+        copy_from_user(user_filename,real_filename,500);
+        printk("[+] hooked sys_mkdir(), mkdir name:");
+        printk(user_filename);
+    }else{
+        printk("[+] read tmp_filename error!");
+    }
+    return old_mkdir(pathname, mode);
 }
 
 // memory protection shinanigans
