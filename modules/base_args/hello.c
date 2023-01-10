@@ -11,13 +11,12 @@ MODULE_AUTHOR("midoks");
 MODULE_DESCRIPTION("hello");
 MODULE_VERSION("v1.0");
 
-
-unsigned long sys_call_table_address = 0;
-module_param(sys_call_table_address, unsigned long, 0);
+static char* sys_call_table_address = "";
+module_param(sys_call_table_address, charp, 0);
 
 int __init hello_module_init(void)
 {
-    printk(KERN_INFO "sys_call_table_address:%ld\n", sys_call_table_address);
+    printk(KERN_INFO "sys_call_table_address:%s\n", sys_call_table_address);
     printk(KERN_INFO "Hello Kernel -- midoks .\n");
     return 0;//A non 0 return means init_module failed; module can't be loaded.
 }
