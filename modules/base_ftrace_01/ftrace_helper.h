@@ -105,11 +105,10 @@ int fh_install_hook(struct ftrace_hook *hook)
     if(err)
         return err;
 
-/*
-* 使用ftrace封装的API进行注册钩子函数
-* ftrace_set_filter_ip、register_ftrace_function
-*/
-
+    /*
+    * 使用ftrace封装的API进行注册钩子函数
+    * ftrace_set_filter_ip,register_ftrace_function
+    */
 
     hook->ops.func = fh_ftrace_thunk;
     hook->ops.flags = FTRACE_OPS_FL_SAVE_REGS
