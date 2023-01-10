@@ -12,8 +12,8 @@ MODULE_DESCRIPTION("hello");
 MODULE_VERSION("v1.0");
 
 
-unsigned long * sys_call_table_address = 0;
-module_param(sys_call_table_address, unsigned long *, 0);
+unsigned long sys_call_table_address = 0;
+module_param(sys_call_table_address, unsigned long, 0);
 
 int __init hello_module_init(void)
 {
