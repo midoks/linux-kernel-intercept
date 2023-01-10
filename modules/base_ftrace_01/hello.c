@@ -39,11 +39,13 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
     return 0; /*everything is ok, but he new systemcall does nothing*/
 }
 
-static asmlinkage long (*original_close)(unsigned int);
-static asmlinkage long custom_close(unsigned int fd)
+static asmlinkage long (*original_close)(const struct pt_regs *);
+static asmlinkage long custom_close(const struct pt_regs *)
 {
-    printk("custom close: %d\n", fd);
-    return original_close(fd); /*everything is ok, but he new systemcall does nothing*/
+    int fd = regs->flags;
+
+    printk("custom close: %d\n", flags);
+    return original_close(flags); /*everything is ok, but he new systemcall does nothing*/
 }
 
 #else
