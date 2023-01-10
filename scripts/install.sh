@@ -1,23 +1,5 @@
 #!bin/bash
 
-mkdir -p /opt
-
-
-curl -sSLo /tmp/main.zip https://codeload.github.com/midoks/linux-kernel-intercept/zip/main
-cd /tmp && unzip /tmp/main.zip
-
-CP_CMD=/usr/bin/cp
-if [ -f /bin/cp ];then
-		CP_CMD=/bin/cp
-fi
-mkdir -p /opt/linux-kernel-intercept
-$CP_CMD -rf /tmp/linux-kernel-intercept-main/* /opt/linux-kernel-intercept
-
-
-rm -rf /tmp/main.zip
-rm -rf /tmp/linux-kernel-intercept-main
-
-
 if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
 	OSNAME='rhel'
 	yum install -y unzip
@@ -59,6 +41,25 @@ else
 fi
 
 echo "use system version: ${OSNAME}"
+
+mkdir -p /opt
+
+curl -sSLo /tmp/main.zip https://codeload.github.com/midoks/linux-kernel-intercept/zip/main
+cd /tmp && unzip /tmp/main.zip
+
+CP_CMD=/usr/bin/cp
+if [ -f /bin/cp ];then
+		CP_CMD=/bin/cp
+fi
+mkdir -p /opt/linux-kernel-intercept
+$CP_CMD -rf /tmp/linux-kernel-intercept-main/* /opt/linux-kernel-intercept
+
+
+rm -rf /tmp/main.zip
+rm -rf /tmp/linux-kernel-intercept-main
+
+
+
 
 # cd /opt/linux-kernel-intercept/modules/base && make
 
