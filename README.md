@@ -26,6 +26,8 @@ cat /proc/kallsyms | grep sys_call_table
 cat /proc/kallsyms | grep sys_call_table | head -n 1|awk '{printf $1}'
 
 insmod hello.ko sys_call_table_address=`cat /proc/kallsyms | grep sys_call_table | head -n 1|awk '{printf $1}'`
+
+insmod hello.ko sys_call_table_address=ffffffffb5e002e0
 ```
 
 - demsg调试命令
