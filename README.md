@@ -21,6 +21,7 @@ curl -fsSL  https://raw.githubusercontent.com/midoks/linux-kernel-intercept/main
 ```
 sudo cat /boot/System.map-`uname -r` | grep sys_call_table
 cat /proc/kallsyms | grep sys_call_table
+cat /proc/kallsyms | grep sys_kill
 
 
 cat /proc/kallsyms | grep sys_call_table | head -n 1|awk '{printf $1}'

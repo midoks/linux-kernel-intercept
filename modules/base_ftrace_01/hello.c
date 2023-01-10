@@ -24,12 +24,9 @@ static asmlinkage long (*original_kill)(const struct pt_regs *);
 asmlinkage int hook_kill(const struct pt_regs *regs)
 {
     // void set_root(void);
-
     pid_t pid = regs->di;
     int sig = regs->si;
-
     printk(KERN_INFO "sig is %d...\npid is %u",sig,pid);
-
     return original_kill(regs);
 
 }
@@ -42,7 +39,7 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
     return 0; /*everything is ok, but he new systemcall does nothing*/
 }
 
-static asmlinkage long (*original_close)(unsigned int fd);
+static asmlinkage long (*original_close)(unsigned int);
 static asmlinkage long custom_close(unsigned int fd)
 {
     printk("custom close: %d\n", fd);
@@ -67,7 +64,7 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 }
 
 
-static asmlinkage long (*original_close)(unsigned int fd);
+static asmlinkage long (*original_close)(unsigned int);
 static asmlinkage long custom_close(unsigned int fd)
 {
     printk("custom close: %d\n", fd);
