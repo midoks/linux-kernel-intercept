@@ -70,9 +70,9 @@ echo "use system version: ${OSNAME}"
 
 cd /opt/linux-kernel-intercept/modules/base_args && make clean && make
 
-# if [ "$?" == "0" ];then
-# 	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && rmmod hello
-# 	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && insmod hello.ko
-# 	dmesg | tail -5 
-# fi
+if [ "$?" == "0" ];then
+	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && rmmod hello
+	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && insmod hello.ko
+	dmesg | tail -5 
+fi
 
