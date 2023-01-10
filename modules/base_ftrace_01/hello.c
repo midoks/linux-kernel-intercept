@@ -30,7 +30,6 @@ asmlinkage int hook_kill(const struct pt_regs *regs)
 
     printk(KERN_INFO "sig is %d...\npid is %u",sig,pid);
 
-
     return original_kill(regs);
 
 }
