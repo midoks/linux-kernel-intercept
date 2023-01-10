@@ -8,7 +8,7 @@
 #include "ftrace_helper.h"
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("blue");
+MODULE_AUTHOR("midoks");
 MODULE_DESCRIPTION("demo");
 MODULE_VERSION("0.01");
 
