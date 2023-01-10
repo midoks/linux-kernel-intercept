@@ -68,7 +68,7 @@ echo "use system version: ${OSNAME}"
 # 	dmesg | tail -5 
 # fi
 
-cd /opt/linux-kernel-intercept/modules/base_sys_mkdir02 && make clean && make
+cd /opt/linux-kernel-intercept/modules/base_args && make clean && make
 
 # if [ "$?" == "0" ];then
 # 	cd /opt/linux-kernel-intercept/modules/base_sys_mkdir && rmmod hello
