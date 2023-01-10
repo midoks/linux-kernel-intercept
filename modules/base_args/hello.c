@@ -17,7 +17,7 @@ module_param(sys_call_table_address, unsigned long, 0);
 
 int __init hello_module_init(void)
 {
-    printk(KERN_INFO "sys_call_table_address:%ln\n", sys_call_table_address);
+    printk(KERN_INFO "sys_call_table_address:%ld\n", sys_call_table_address);
     printk(KERN_INFO "Hello Kernel -- midoks .\n");
     return 0;//A non 0 return means init_module failed; module can't be loaded.
 }
