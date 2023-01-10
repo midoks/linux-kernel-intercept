@@ -62,6 +62,20 @@ static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
     printk(KERN_INFO "mkdir do nothing!\n");
+
+    struct filename* tmp_filename = NULL;
+    
+    unsigned long * pathname_real =  (void *)(  (unsigned long)pathname + 0x70  );
+    char * real_filename = (char *)(*pathname_real);
+    if(real_filename){
+        char user_filename[500] = {0};
+        copy_from_user(user_filename,real_filename,500);
+        printk("[+] hooked sys_mkdir(), mkdir name:");
+        printk(user_filename);
+    }else{
+        printk("[+] read tmp_filename error!");
+    }
+
     return original_mkdir(pathname,mode); /*everything is ok, but he new systemcall does nothing*/
 }
 
