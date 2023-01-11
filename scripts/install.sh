@@ -69,11 +69,11 @@ rm -rf /tmp/linux-kernel-intercept-main
 # 	dmesg | tail -5 
 # fi
 
-cd /opt/linux-kernel-intercept/modules/base_ftrace_01 && make clean && make
+cd /opt/linux-kernel-intercept/modules/base_all_demo && make clean && make
 
 if [ "$?" == "0" ];then
-	cd /opt/linux-kernel-intercept/modules/base_ftrace_01 && rmmod hello
-	cd /opt/linux-kernel-intercept/modules/base_ftrace_01 && insmod hello.ko
+	cd /opt/linux-kernel-intercept/modules/base_all_demo && rmmod hello
+	cd /opt/linux-kernel-intercept/modules/base_all_demo && insmod hello.ko
 	dmesg | tail -5 
 fi
 
