@@ -24,15 +24,9 @@ static unsigned long * sys_call_table;
 //定义
 // open
 asmlinkage int (*original_open)(const char*, int, int);
-asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
+// asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
 
-// mkdir
-// asmlinkage long *original_mkdir = NULL;
-asmlinkage long (*original_mkdir)(const char*, int);
-asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode);
-
-
-/** 
+/**
  * @desc 自定义拦截文件打开时间
  * @param file_name 文件
  */
@@ -59,6 +53,11 @@ asmlinkage int custom_open(const char* __user file_name, int flags, int mode)
     // printk(KERN_WARNING "hello op PWD:%s!\n",pwd.dentry->d_name.name);
     return original_open(file_name, flags, mode);
 }
+
+// mkdir
+// asmlinkage long *original_mkdir = NULL;
+asmlinkage long (*original_mkdir)(const char*, int);
+// asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode);
 
 //mkdir的函数原型,这个函数的原型要和系统的一致
 asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
