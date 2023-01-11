@@ -79,7 +79,7 @@ static int fh_resolve_hook_address(struct ftrace_hook *hook)
 #if USE_FENTRY_OFFSET
     *((unsigned long*) hook->original) = hook->address + MCOUNT_INSN_SIZE;
 #else
-    *((unsigned long*) hook->original) = hook->address;
+    *((unsigned long*) hook->original) = hook->address + MCOUNT_INSN_SIZE;
 #endif
 
     return 0;
