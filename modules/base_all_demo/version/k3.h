@@ -10,5 +10,5 @@ int init_intercept(void){
 
 
 int exit_intercept(void){
-	return 0
+	return 0;
 }
