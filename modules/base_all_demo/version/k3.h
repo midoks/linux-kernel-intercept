@@ -2,6 +2,22 @@
 #include <linux/kernel.h>   /* Needed for KERN_INFO */
 #include <linux/init.h>
 
+#include <linux/kallsyms.h>
+#include <linux/uaccess.h>
+#include <linux/string.h>
+#include <linux/proc_fs.h>
+#include <linux/vmalloc.h>
+#include <asm/uaccess.h>
+#include <asm/current.h>
+#include <linux/syscalls.h>
+#include <linux/fs.h>
+#include <linux/fcntl.h>
+#include <linux/file.h>
+#include <asm/unistd.h>
+#include <linux/fs_struct.h>
+#include <linux/dcache.h>
+#include <linux/path.h>
+
 static char writebuf[100];
 static unsigned long * sys_call_table;
 
