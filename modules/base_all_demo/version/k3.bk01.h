@@ -57,7 +57,7 @@ asmlinkage int custom_open(const char* __user file_name, int flags, int mode)
 // mkdir
 // asmlinkage long *original_mkdir = NULL;
 //拦截后,直接奔溃
-asmlinkage long (*original_mkdir)(const char*, int);
+asmlinkage long (*original_mkdir)(const char __user *pathname, umode_t mode);
 // asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode);
 
 //mkdir的函数原型,这个函数的原型要和系统的一致
