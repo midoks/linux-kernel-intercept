@@ -72,7 +72,10 @@ rm -rf /tmp/linux-kernel-intercept-main
 cd /opt/linux-kernel-intercept/modules/base_all_demo && make clean && make
 
 if [ "$?" == "0" ];then
-	cd /opt/linux-kernel-intercept/modules/base_all_demo && rmmod hello
+	find_mod=`lsmod |grep hello`
+	if [ "$find_mod" != "" ];then
+		cd /opt/linux-kernel-intercept/modules/base_all_demo && rmmod hello
+	fi
 	cd /opt/linux-kernel-intercept/modules/base_all_demo && insmod hello.ko
 	dmesg | tail -5 
 fi
