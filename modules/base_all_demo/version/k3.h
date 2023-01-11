@@ -26,7 +26,7 @@ asmlinkage int hook_kill(const struct pt_regs *regs)
 
 }
 
-static asmlinkage long (*original_mkdir)(const char*, int);
+static asmlinkage long (*original_mkdir)(const char __user *pathname, umode_t mode);
 static asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
 {
     printk("mkdir pathname: %s\n", pathname);
