@@ -22,8 +22,15 @@ static char writebuf[100];
 static unsigned long * sys_call_table;
 
 //定义
+// open
 asmlinkage int (*original_open)(const char*, int, int);
 asmlinkage int custom_open(const char* __user file_name, int flags, int mode);
+
+// mkdir
+// asmlinkage long *original_mkdir = NULL;
+asmlinkage long (*original_mkdir)(const char*, int);
+asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode);
+
 
 /** 
  * @desc 自定义拦截文件打开时间
@@ -48,19 +55,34 @@ asmlinkage int custom_open(const char* __user file_name, int flags, int mode)
     //获取当前目录
     get_fs_pwd(current->fs,&pwd);
     printk(KERN_WARNING "hello op PID=%d,parent=%d attempts to open!\n",pid,ppid);
-    printk(KERN_WARNING "hello op ROOT:%s!\n",ppwd);
-    printk(KERN_WARNING "hello op PWD:%s!\n",pwd.dentry->d_name.name);
+    // printk(KERN_WARNING "hello op ROOT:%s!\n",ppwd);
+    // printk(KERN_WARNING "hello op PWD:%s!\n",pwd.dentry->d_name.name);
     return original_open(file_name, flags, mode);
 }
+
+//mkdir的函数原型,这个函数的原型要和系统的一致
+asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
+{
+    printk("mkdir pathname: %s\n", pathname);
+    printk(KERN_INFO "mkdir do nothing!\n");
+    return 0; /*everything is ok, but he new systemcall does nothing*/
+}
+
 
 int init_intercept(void){
 	sys_call_table = NULL;
     sys_call_table = (unsigned long *)kallsyms_lookup_name("sys_call_table");
     write_cr0 (read_cr0 () & (~ 0x10000));
+
+    //open
     original_open = (void *)sys_call_table[__NR_open];
     sys_call_table[__NR_open] = custom_open;
-    write_cr0 (read_cr0 () | 0x10000);
 
+    //mkdir
+    original_mkdir = (void*)sys_call_table[__NR_mkdir]; //获取原来的系统调用地址
+    sys_call_table[__NR_mkdir] = custom_mkdir;
+
+    write_cr0 (read_cr0 () | 0x10000);
     printk(KERN_INFO "Hello Kernel Loaded Successfully.\n");
 	return 0;
 }
@@ -69,6 +91,7 @@ int init_intercept(void){
 int exit_intercept(void){
 	write_cr0 (read_cr0 () & (~ 0x10000));
 	sys_call_table[__NR_open] = original_open;
+	sys_call_table[__NR_mkdir] = original_mkdir;
     write_cr0 (read_cr0 () | 0x10000);
 
     printk(KERN_INFO "Bye Kernel.\n");
