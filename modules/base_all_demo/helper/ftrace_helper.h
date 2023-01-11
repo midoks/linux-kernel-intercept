@@ -32,7 +32,7 @@ static struct kprobe kp = {
 * 通过设置USE_FENTRY_OFFSET=0。访问在hook的时候陷入递归循环
 */
 
-#define USE_FENTRY_OFFSET 0
+#define USE_FENTRY_OFFSET 1
 // #if !USE_FENTRY_OFFSET
 // #pragma GCC optimize("-fno-optimize-sibling-calls")
 // #endif
