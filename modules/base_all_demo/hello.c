@@ -21,13 +21,13 @@
 static int __init rootkit_init(void)
 {
     printk(KERN_INFO "rootkit: Loaded >:-)\n");
-    init_intercept()
+    init_intercept();
     return 0;
 }
 
 static void __exit rootkit_exit(void)
 {
-    exit_intercept()
+    exit_intercept();
     printk(KERN_INFO "rootkit: Unloaded :-(\n");
 }
 
