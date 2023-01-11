@@ -17,7 +17,7 @@ unsigned long (*n_kallsyms_lookup_name)(char *) = 0xffffffffb9b1ff50;
 
 int __init hello_module_init(void)
 {
-    printk(KERN_INFO "sys_call_table_address:%p\n", sys_call_table_address);
+    printk(KERN_INFO "n_kallsyms_lookup_name:%p\n", n_kallsyms_lookup_name);
     printk(KERN_INFO "Hello Kernel -- midoks .\n");
     return 0;//A non 0 return means init_module failed; module can't be loaded.
 }
