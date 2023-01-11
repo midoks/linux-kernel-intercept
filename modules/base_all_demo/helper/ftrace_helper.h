@@ -22,10 +22,10 @@ static struct kprobe kp = {
 #endif
 
 #define HOOK(_name, _hook, _orig)   \
-{                   \
-    .name = (_name),        \
-    .function = (_hook),        \
-    .original = (_orig),        \
+{                                   \
+    .name = (_name),                \
+    .function = (_hook),            \
+    .original = (_orig),            \
 }
 
 /*
