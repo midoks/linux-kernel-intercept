@@ -5,7 +5,7 @@
 #include <linux/kallsyms.h>
 #include <linux/version.h>
 
-#include "helper/ftrace_helper.h"
+#include "../helper/ftrace_helper.h"
 
 
 #if defined(CONFIG_X86_64) && (LINUX_VERSION_CODE >= KERNEL_VERSION(4,17,0))
