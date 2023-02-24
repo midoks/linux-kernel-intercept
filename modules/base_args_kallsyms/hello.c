@@ -12,8 +12,22 @@ MODULE_DESCRIPTION("hello");
 MODULE_VERSION("v1.0");
 
 unsigned long (*n_kallsyms_lookup_name)(char *) = 0xffffffffb9b1ff50;
+// module_param(n_kallsyms_lookup_name, charp, 0);
 // module_param(sys_call_table_address, charp, 0);
-// module_param(sys_call_table_address, charp, 0);
+
+// mkdir
+// asmlinkage long *original_mkdir = NULL;
+//拦截后,直接奔溃
+asmlinkage long (*original_mkdir)(const char __user *pathname, umode_t mode);
+// asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode);
+
+//mkdir的函数原型,这个函数的原型要和系统的一致
+asmlinkage long custom_mkdir(const char __user *pathname, umode_t mode)
+{
+    printk("mkdir pathname: %s\n", pathname);
+    printk(KERN_INFO "mkdir do nothing!\n");
+    return 0; /*everything is ok, but he new systemcall does nothing*/
+}
 
 int __init hello_module_init(void)
 {

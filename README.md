@@ -21,7 +21,9 @@ curl -fsSL  https://raw.githubusercontent.com/midoks/linux-kernel-intercept/main
 ```
 sudo cat /boot/System.map-`uname -r` | grep sys_call_table
 cat /proc/kallsyms | grep sys_call_table
+cat /proc/kallsyms | grep kallsyms_lookup_name
 cat /proc/kallsyms | grep sys_kill
+cat /proc/kallsyms | grep sys_mkdir
 
 
 cat /proc/kallsyms | grep sys_call_table | head -n 1|awk '{printf $1}'
@@ -90,6 +92,7 @@ asmlinkage long sys_lookup_dcookie(u64 cookie64, char __user *buf, size_t len);
 ##
 ```
 yum -y install lrzsz
+apt-get install lrzsz
 ```
 
 ### 参考
