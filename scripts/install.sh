@@ -6,6 +6,9 @@ if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
 
 	yum install -y kernel-devel-$(uname -r)
 
+	# yum search kernel-devel
+	# yum install -y kernel-devel-matched.x86_64
+
 	yum install -y rpm-build redhat-rpm-config asciidoc hmaccalc perl-ExtUtils-Embed pesign xmlto
 	yum install -y audit-libs-devel binutils-devel elfutils-devel elfutils-libelf-devel java-devel
 	yum install -y ncurses-devel newt-devel numactl-devel pciutils-devel python-devel zlib-devel
